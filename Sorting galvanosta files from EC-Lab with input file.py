@@ -82,27 +82,27 @@ def cycle_dataframe_labeled(grouped, cycle, label, printlabel, mass):
         header = pd.DataFrame([['Capacity', 'Potential vs Li/Li+', 
                                 'Capacity', 'Potential vs Li/Li+'],
                                ['mAh', 'V', 'mAh', 'V'],
-                               ['cycle {} {} discharge'.format(str(cycle), label), 'cycle {} {} discharge'.format(str(cycle), label),
-                                'cycle {} {} charge'.format(str(cycle), label), 'cycle {} {} charge'.format(str(cycle), label)]], 
-                                columns=['{}a {} discharge'.format(str(cycle), label), '{}b {} discharge'.format(str(cycle), label),
-                                         '{}a {} charge'.format(str(cycle), label), '{}b {} charge'.format(str(cycle), label)])
+                               ['cycle {} {} charge'.format(str(cycle), label), 'cycle {} {} charge'.format(str(cycle), label),
+                                'cycle {} {} discharge'.format(str(cycle), label), 'cycle {} {} discharge'.format(str(cycle), label)]], 
+                                columns=['{}a {} charge'.format(str(cycle), label), '{}b {} charge'.format(str(cycle), label),
+                                         '{}a {} discharge'.format(str(cycle), label), '{}b {} discharge'.format(str(cycle), label)])
     else:
         header = pd.DataFrame([['Specific Capacity', 'Potential vs Li/Li+', 
                                 'Specific Capacity', 'Potential vs Li/Li+'],
                                ['mAh/g', 'V', 'mAh/g', 'V'],
-                               ['cycle {} {} discharge'.format(str(cycle), label), 'cycle {} {} discharge'.format(str(cycle), label),
-                                'cycle {} {} charge'.format(str(cycle), label), 'cycle {} {} charge'.format(str(cycle), label)]], 
-                                columns=['{}a {} discharge'.format(str(cycle), label), '{}b {} discharge'.format(str(cycle), label),
-                                         '{}a {} charge'.format(str(cycle), label), '{}b {} charge'.format(str(cycle), label)])
+                               ['cycle {} {} charge'.format(str(cycle), label), 'cycle {} {} charge'.format(str(cycle), label),
+                                'cycle {} {} discharge'.format(str(cycle), label), 'cycle {} {} discharge'.format(str(cycle), label)]], 
+                                columns=['{}a {} charge'.format(str(cycle), label), '{}b {} charge'.format(str(cycle), label),
+                                         '{}a {} discharge'.format(str(cycle), label), '{}b {} discharge'.format(str(cycle), label)])
                                 
     value = pd.DataFrame([grouped.get_group(2*cycle-2)['Capacity/mA.h'].values/mass, 
                           grouped.get_group(2*cycle-2)['Ewe/V'].values, 
                           grouped.get_group(2*cycle-1)['Capacity/mA.h'].values/mass, 
                           grouped.get_group(2*cycle-1)['Ewe/V'].values], 
-                          index = ['{}a {} discharge'.format(str(cycle), label), 
-                                   '{}b {} discharge'.format(str(cycle), label),
-                                   '{}a {} charge'.format(str(cycle), label), 
-                                   '{}b {} charge'.format(str(cycle), label)]).transpose()
+                          index = ['{}a {} charge'.format(str(cycle), label), 
+                                   '{}b {} charge'.format(str(cycle), label),
+                                   '{}a {} discharge'.format(str(cycle), label), 
+                                   '{}b {} discharge'.format(str(cycle), label)]).transpose()
     dataframe = header.append(value, ignore_index=True,)
     return dataframe
     
@@ -110,18 +110,18 @@ def gal_capacity(grouped, mass, label):
     if mass == 1:
         header = pd.DataFrame([['cycle', 'Capacity', 'Capacity'],
                                ['', 'mAh', 'mAh'],
-                               ['{}'.format(label), '{} discharge'.format(label), '{} charge'.format(label)]])
+                               ['{}'.format(label), '{} charge'.format(label), '{} discharge'.format(label)]])
         
     else:
         header = pd.DataFrame([['cycle', 'Spacific Capacity', 'Spacific Capacity'],
                                ['', 'mAh/g', 'mAh/g'],
-                               ['{}'.format(label), '{} discharge'.format(label), '{}charge'.format(label)]])
+                               ['{}'.format(label), '{} charge'.format(label), '{} discharge'.format(label)]])
     
     
     for cycle in np.arange(1,len(grouped)/2):
-        discharge = grouped.get_group(2*cycle-2)['Capacity/mA.h'].values[-1]/mass
-        charge = grouped.get_group(2*cycle-1)['Capacity/mA.h'].values[-1]/mass
-        values = pd.DataFrame([[cycle, discharge, charge]])
+        charge = grouped.get_group(2*cycle-2)['Capacity/mA.h'].values[-1]/mass
+        discharge = grouped.get_group(2*cycle-1)['Capacity/mA.h'].values[-1]/mass
+        values = pd.DataFrame([[cycle, charge, discharge]])
         header = header.append(values, ignore_index=True)
     
     return header
