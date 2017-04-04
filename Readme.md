@@ -19,10 +19,10 @@ eg. TiN + Carbon ink mixture vs carbon control ink mixture, both cycled in Ar an
 - rows: list of diffrent samples, must match the rows in "cv_files"
 - values: corresponding masses in grams, masses set to 0 will not be sorted
 
-        | active mass            | Tin           | carbon           |
---------|------------------------|---------------|------------------|
-TiN + C | (mass of TiN + Carbon) | (mass of TiN) | (mass of carbon) |
-C       | (mass of Carbon)       | 0             | (mass of Carbon) |
+|        | active mass            | Tin           | carbon           |
+|--------|------------------------|---------------|------------------|
+|TiN + C | (mass of TiN + Carbon) | (mass of TiN) | (mass of carbon) |
+|C       | (mass of Carbon)       | 0             | (mass of Carbon) |
 
 
 ### "selected_cycles"
@@ -30,13 +30,13 @@ C       | (mass of Carbon)       | 0             | (mass of Carbon) |
 - rows: general list of numbers starting from 0, does not effect the sorting
 - values: cycle numbers to be sorted, for each treatment, set to 0 finishes cycle selection
 
-  | Ar | O2  |
---|----|-----|
-0 | 1  | 1   |
-1 | 3  | 5   |
-2 | 0  | 10  |
-3 | 0  | 15  |
-4 | 0  | 20  |
+|  | Ar | O2  |
+|--|----|-----|
+|0 | 1  | 1   |
+|1 | 3  | 5   |
+|2 | 0  | 10  |
+|3 | 0  | 15  |
+|4 | 0  | 20  |
 
 In output file, will be sorted into sheets based on the normalising masses. 
 The first sheet is 'as measured', ie. not normalised, followed by the masses listed in the "mass_grid". 
@@ -55,39 +55,34 @@ eg. TiN + Carbon ink mixture vs carbon control ink mixture, both cycled in Ar an
 - rows: list of diffrent samples, eg. TiN + carbon, carbon control
 - values:cv file names of with extention of the cooresponding CVs
     
-        | Ar                               | O2                               |
---------|----------------------------------|----------------------------------|
-TiN + C | (Ar cv file name with extention) | (Ar cv file name with extention) |
-C       | (Ar cv file name with extention) | (Ar cv file name with extention) |
+|        | Ar                               | O2                               |
+|--------|----------------------------------|----------------------------------|
+|TiN + C | (Ar cv file name with extention) | (Ar cv file name with extention) |
+|C       | (Ar cv file name with extention) | (Ar cv file name with extention) |
 
 "mass_grid" sheet:
 - columns: list diffrent masses to be normalised by 
 - rows: list of diffrent samples, must match the rows in "gal_files"
 - values: corresponding masses in grams, masses set to 0 will not be sorted
 
-        | active mass            | Tin           | carbon           |
---------|------------------------|---------------|----------------------
-TiN + C | (mass of TiN + Carbon) | (mass of TiN) | (mass of carbon) |
-C       | (mass of Carbon)       | 0             | (mass of Carbon) |
+|        | active mass            | Tin           | carbon           |
+|--------|------------------------|---------------|------------------|
+|TiN + C | (mass of TiN + Carbon) | (mass of TiN) | (mass of carbon) |
+|C       | (mass of Carbon)       | 0             | (mass of Carbon) |
 
 
 "selected_cycles'
-    columns: list of treatment on samples, must match columns of "gal_files"
-    rows: general list of numbers starting from 0, does not effect the sorting
-    values: cycle numbers to be sorted, for each treatment, set to 0 finishes cycle selection
---------------
-  | Ar | O2  |
---------------
-0 | 1  | 1   |
---------------
-1 | 3  | 5   |
---------------
-2 | 0  | 10  |
---------------
-3 | 0  | 15  |
---------------
-4 | 0  | 20  |
---------------
+- columns: list of treatment on samples, must match columns of "gal_files"
+- rows: general list of numbers starting from 0, does not effect the sorting
+- values: cycle numbers to be sorted, for each treatment, set to 0 finishes cycle selection
+  
+|  | Ar | O2  |
+|--|----|-----|
+|0 | 1  | 1   |
+|1 | 3  | 5   |
+|2 | 0  | 10  |
+|3 | 0  | 15  |
+|4 | 0  | 20  |
 
 In output file, will be sorted into sheets based on the normalising masses. 
 The first file is 'as measured', ie. not normalised, followed by the masses listed in the "mass_grid". 
